@@ -1,4 +1,4 @@
-# Solutions to problem found at Project Euler
+# Solutions to problems found at Project Euler
 
 ### What's project euler?
 
