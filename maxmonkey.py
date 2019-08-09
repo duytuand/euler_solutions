@@ -33,17 +33,18 @@ class MP:
         self.n = pirates
 
     def an_chuoi(self):
-        """ Counting backwards, starting from the number of bananas """
-
+        """ 
+        Counting backwards from the last pirate's pile of bananas 
+        """
         for k in range(1, self.n ** self.n):
-            b = k * self.n  # bananas left when n-th pirate wakes
-            msg = self.solve(b)
+            msg = self.solve(k * self.n)
             if msg:
                 print("Solution found:\n{}".format(msg))
                 break
 
     def solve(self, b: int):
-        """ iterate through all pirates, find chain of banana counts
+        """ 
+        iterate through all pirates, find chain of banana counts
 
         Parameters
         ----------
@@ -57,20 +58,23 @@ class MP:
             if self.count_prev(b_now):
                 b_monkey = 0
             elif self.count_prev(b_now + 1):
-                b_now = b_now + 1
+                b_now += 1
                 b_monkey = 1
             else:
                 return
+
+            i -= 1
             b_now = self.count_prev(b_now)
             res.append("pirate #{} finds {}, monkey eats {}, hides {}"
                        .format(i, b_now, b_monkey, int(b_now / self.n)))
-            i -= 1
+
         res.reverse()
         return '\n'.join(res)
 
     def count_prev(self, b: int):
-        """ Count bananas when previous pirate woke
-        chronologically previous
+        """ 
+        Count bananas when previous pirate woke (chronologically)
+        
 
         Parameters
         ----------
